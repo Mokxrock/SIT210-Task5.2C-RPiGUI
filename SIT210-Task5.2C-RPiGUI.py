@@ -12,9 +12,11 @@ yellow = LED(23) # Yellow LED connect to PIN 23
 red = LED(24) # Red LED connect to PIN 24
 
 #GUI DEF
-win = Tk() # Window set as Tk() 
-win.title("PARTY TIME") # Title Of the Window 
-myFont = (tkinter.font.Font(family = 'Helvetica', size=15, weight="bold" ))
+win = Tk() # Window set as Tk(), Tk() create a object that allow us to build the GUI in
+win.title("PARTY TIME") # set Title Of the Window 
+myFont = (tkinter.font.Font(family = 'Helvetica', size=15, weight="bold" )) #set fonts 
+
+
 
 # Event Function
 # Turn On Red LED 
@@ -75,48 +77,3 @@ endLED.grid(row=3, column=1)
 
 win.protocol("WM_DELETE_WINDOW", bye) #EXIT CLEANLY
 win.mainloop() #Loop forever
-
-
-####### test 2 test 2
-
-from tkinter import * # Import functions from tkinter
-
-
-win = Tk() # Window set as Tk() 
-win.title("MORSE CODE TIME") # Title Of the Window
-win.geometry('400x200')
-# myFont = (tkinter.font.Font(family = 'Helvetica', size=15, weight="bold" ))
-from gpiozero import LED # import function from specific roles just like GPIO
-import RPi.GPIO as GPIO
-
-
-GPIO.setmode(GPIO.BCM)
-# Event Function
-
-def printInput():
-    inputs = inputtxt.get( );
-    
-    if (len(inputs) <= 3):
-        lbl.config(text = "Provide input: " + inputs + " Length: " + str(len(inputs)))
-    else:
-        lbl.config(text = "Try Again")
-    
-    
-            
-    
-inputtxt = Entry(win, width = 20);
-inputtxt.pack()
-
-printButton = Button(win, text= "Blink Time", command = printInput)
-printButton.pack()
-
-
-lbl = Label(win, text="")
-lbl.pack()
-
-    
-    
-                      
-
-win.mainloop() #Loop forever
-
