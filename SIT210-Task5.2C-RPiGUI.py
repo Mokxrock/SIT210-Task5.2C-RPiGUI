@@ -14,7 +14,7 @@ red = LED(24) # Red LED connect to PIN 24
 #GUI DEF
 win = Tk() # Window set as Tk(), Tk() create a object that allow us to build the GUI in
 win.title("PARTY TIME") # set Title Of the Window 
-myFont = (tkinter.font.Font(family = 'Helvetica', size=15, weight="bold" )) #set fonts 
+myFont = (tkinter.font.Font(family = 'Helvetica', size=15, weight="bold" )) #Set fonts 
 
 
 
@@ -24,44 +24,38 @@ def redLED():
     if red.is_lit:
         red.off()
         redButton["text"] = "Red"
-        
     else:
         red.on()
         green.off()
         yellow.off()
-        #redButton["text"] = "Red Off"
         
 # Turn On Yellow LED 
 def yellowLED(): 
-    if yellow.is_lit:
-        yellow.off()
-        yellowButton["text"] = "Yellow"
-        
+    if yellow.is_lit: # Check if LED is on
+        yellow.off() 
+        yellowButton["text"] = "Yellow" 
     else:
         yellow.on()
         red.off()
         green.off()
-        #greenButton["text"] = "Yellow Off"
-       
+        
 # Turn On Green LED 
 def greenLED(): 
     if green.is_lit:
         green.off()
-        greenButton["text"] = "Green"
-        
+        greenButton["text"] = "Green"   
     else:
         green.on()
         red.off()
         yellow.off()
-        #greenButton["text"] = "Green Off"
        
 def bye():
-    GPIO.cleanup()
-    win.destroy()
+    GPIO.cleanup() # Close the Program anytime and reset everything
+    win.destroy() # Close the window
 
 # GREEN BUTTON DESIGN
-greenButton = Button(win, text='GREEN', font=myFont, command= greenLED, bg= 'green', height = 1, width=24)
-greenButton.grid(row=0, column=1)
+greenButton = Button(win, text='GREEN', font=myFont, command= greenLED, bg= 'green', height = 1, width=24) # Button Design and Command for Button
+greenButton.grid(row=0, column=1) # Placement of Button 
                       
 # YELLOW BUTTON DESIGN
 yellowButton = Button(win, text='YELLOW', font=myFont, command=yellowLED , bg= 'yellow', height = 1, width=24)
@@ -75,5 +69,5 @@ redButton.grid(row=2, column=1)
 endLED = Button(win, text='Bye Bye', font=myFont, command= bye, bg= 'white', height = 1, width=6)
 endLED.grid(row=3, column=1)
 
-win.protocol("WM_DELETE_WINDOW", bye) #EXIT CLEANLY
+win.protocol("WM_DELETE_WINDOW", bye) # EXIT CLEANLY when click the close button and attach to the bye function
 win.mainloop() #Loop forever
